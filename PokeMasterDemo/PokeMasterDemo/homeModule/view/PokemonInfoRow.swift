@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct PokemonInfoRow: View {
-//    let model = PokemonViewModel.sample(id: 1)
     let model: PokemonViewModel
-    @State var expanded: Bool
+    var expanded: Bool
     
     var body: some View {
         VStack {
@@ -80,12 +79,12 @@ struct PokemonInfoRow: View {
             }
         )
         .padding(.horizontal)
-//        .animation(.default, value: expanded)
-        .onTapGesture {
-            withAnimation(.spring(response: 0.55, dampingFraction: 0.425, blendDuration: 0)) {
-                self.expanded.toggle()
-            }
-        }
+        .animation(.default, value: expanded)
+//        .onTapGesture {
+//            withAnimation(.spring(response: 0.55, dampingFraction: 0.425, blendDuration: 0)) {
+//                self.expanded.toggle()
+//            }
+//        }
     }
 }
 

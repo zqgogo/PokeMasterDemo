@@ -86,6 +86,8 @@
 		0B2CF3622ADFE11000048ABE /* Ability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CF35E2ADFE11000048ABE /* Ability.swift */; };
 		0B2CF3642ADFE29B00048ABE /* PokemonInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CF3632ADFE29B00048ABE /* PokemonInfoRow.swift */; };
 		0BC1E6912AE2936400488624 /* PokemonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1E6902AE2936300488624 /* PokemonList.swift */; };
+		0BC1E6932AE61C1B00488624 /* PokemonInfoPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1E6922AE61C1B00488624 /* PokemonInfoPanel.swift */; };
+		0BC1E6962AE67A8400488624 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1E6952AE67A8400488624 /* BlurView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -169,6 +171,9 @@
 		0B2CF35E2ADFE11000048ABE /* Ability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ability.swift; sourceTree = "<group>"; };
 		0B2CF3632ADFE29B00048ABE /* PokemonInfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonInfoRow.swift; sourceTree = "<group>"; };
 		0BC1E6902AE2936300488624 /* PokemonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonList.swift; sourceTree = "<group>"; };
+		0BC1E6922AE61C1B00488624 /* PokemonInfoPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonInfoPanel.swift; sourceTree = "<group>"; };
+		0BC1E6952AE67A8400488624 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		0BC1E6972AE6820100488624 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +206,7 @@
 		0B2CF2662ADFCC8400048ABE /* PokeMasterDemo */ = {
 			isa = PBXGroup;
 			children = (
+				0BC1E6972AE6820100488624 /* Info.plist */,
 				0B2CF2D62ADFDFC400048ABE /* resource */,
 				0B2CF27E2ADFD7FA00048ABE /* baseModule */,
 				0B2CF27D2ADFD79900048ABE /* tools */,
@@ -246,6 +252,8 @@
 			children = (
 				0B2CF3632ADFE29B00048ABE /* PokemonInfoRow.swift */,
 				0BC1E6902AE2936300488624 /* PokemonList.swift */,
+				0BC1E6922AE61C1B00488624 /* PokemonInfoPanel.swift */,
+				0BC1E6952AE67A8400488624 /* BlurView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -566,12 +574,14 @@
 				0B2CF2D42ADFDFB300048ABE /* Helpers.swift in Sources */,
 				0B2CF2D32ADFDFB300048ABE /* FileStorage.swift in Sources */,
 				0B2CF3612ADFE11000048ABE /* Pokemon.swift in Sources */,
+				0BC1E6932AE61C1B00488624 /* PokemonInfoPanel.swift in Sources */,
 				0B2CF26A2ADFCC8500048ABE /* ContentView.swift in Sources */,
 				0B2CF2D12ADFDFB300048ABE /* Sample.swift in Sources */,
 				0B2CF35A2ADFE0EB00048ABE /* AbilityViewModel.swift in Sources */,
 				0B2CF2D52ADFDFB300048ABE /* FileHelper.swift in Sources */,
 				0B2CF3642ADFE29B00048ABE /* PokemonInfoRow.swift in Sources */,
 				0B2CF3592ADFE0EB00048ABE /* PokemonViewModel.swift in Sources */,
+				0BC1E6962AE67A8400488624 /* BlurView.swift in Sources */,
 				0B2CF2682ADFCC8400048ABE /* PokeMasterDemoApp.swift in Sources */,
 				0B2CF3622ADFE11000048ABE /* Ability.swift in Sources */,
 				0BC1E6912AE2936400488624 /* PokemonList.swift in Sources */,
@@ -705,7 +715,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"PokeMasterDemo/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = PokeMasterDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -733,7 +743,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"PokeMasterDemo/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = PokeMasterDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
