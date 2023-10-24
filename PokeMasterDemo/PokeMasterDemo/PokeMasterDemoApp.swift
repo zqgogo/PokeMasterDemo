@@ -13,6 +13,7 @@ struct PokeMasterDemoApp: App {
         WindowGroup {
 //            ContentView()
             PokemonList()
+//            SettingView()
         }
     }
 }
