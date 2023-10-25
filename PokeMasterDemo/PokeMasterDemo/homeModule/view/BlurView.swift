@@ -12,16 +12,9 @@ struct BlurView: UIViewRepresentable {
     
     let style: UIBlurEffect.Style
     
-//    private var blurView: UIVisualEffectView
-    private let parView: UIView
-    
     init(style: UIBlurEffect.Style) {
         print("init")
         self.style = style
-        
-        let view = UIView(frame: .zero)
-        view.backgroundColor = .clear
-        parView = view
     }
     
     func makeUIView(context: Context) -> some UIView {
@@ -32,31 +25,24 @@ struct BlurView: UIViewRepresentable {
         blurView.translatesAutoresizingMaskIntoConstraints = false
         blurView.tag = 999
         // 2
-        parView.addSubview(blurView)
+        let view = UIView(frame: .zero)
+        view.backgroundColor = .clear
+        view.addSubview(blurView)
         NSLayoutConstraint.activate([
             blurView.heightAnchor
-                .constraint(equalTo: parView.heightAnchor),
+                .constraint(equalTo: view.heightAnchor),
             blurView.widthAnchor
-                .constraint(equalTo: parView.widthAnchor)
+                .constraint(equalTo: view.widthAnchor)
         ])
-        return parView
+        return view
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
         print("updateUIView")
         DispatchQueue.main.async {
-            if let bView = self.parView.viewWithTag(999) {
-                bView.removeFromSuperview()
+            if let bView = uiView.viewWithTag(999) as? UIVisualEffectView {
+                bView.effect = UIBlurEffect(style: style)
             }
-            let blurView = UIVisualEffectView(effect: UIBlurEffect(style: style))
-            blurView.translatesAutoresizingMaskIntoConstraints = false
-            self.parView.addSubview(blurView)
-            NSLayoutConstraint.activate([
-                blurView.heightAnchor
-                    .constraint(equalTo: parView.heightAnchor),
-                blurView.widthAnchor
-                    .constraint(equalTo: parView.widthAnchor)
-            ])
         }
     }
 }

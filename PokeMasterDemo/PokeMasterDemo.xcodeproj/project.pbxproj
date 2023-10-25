@@ -91,6 +91,7 @@
 		0BC1E6992AE76A4900488624 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1E6982AE76A4900488624 /* SettingsViewModel.swift */; };
 		0BC1E69B2AE7789800488624 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1E69A2AE7789800488624 /* SettingView.swift */; };
 		0BC1E69D2AE7B48600488624 /* SettingRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1E69C2AE7B48600488624 /* SettingRootView.swift */; };
+		0BC1E69F2AE8BBF900488624 /* PokemonRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1E69E2AE8BBF900488624 /* PokemonRootView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -180,6 +181,7 @@
 		0BC1E6982AE76A4900488624 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		0BC1E69A2AE7789800488624 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		0BC1E69C2AE7B48600488624 /* SettingRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRootView.swift; sourceTree = "<group>"; };
+		0BC1E69E2AE8BBF900488624 /* PokemonRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonRootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +262,7 @@
 				0BC1E6902AE2936300488624 /* PokemonList.swift */,
 				0BC1E6922AE61C1B00488624 /* PokemonInfoPanel.swift */,
 				0BC1E6952AE67A8400488624 /* BlurView.swift */,
+				0BC1E69E2AE8BBF900488624 /* PokemonRootView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				0BC1E6962AE67A8400488624 /* BlurView.swift in Sources */,
 				0B2CF2682ADFCC8400048ABE /* PokeMasterDemoApp.swift in Sources */,
 				0B2CF3622ADFE11000048ABE /* Ability.swift in Sources */,
+				0BC1E69F2AE8BBF900488624 /* PokemonRootView.swift in Sources */,
 				0BC1E6912AE2936400488624 /* PokemonList.swift in Sources */,
 				0BC1E6992AE76A4900488624 /* SettingsViewModel.swift in Sources */,
 			);
