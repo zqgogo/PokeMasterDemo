@@ -9,6 +9,10 @@ import SwiftUI
 
 struct SettingView: View {
     @ObservedObject var settings = SettingsViewModel()
+    @EnvironmentObject var store: Store
+    var settingsBinding: Binding<AppState.Settings> {
+        $store.appState.settings
+    }
     
     var body: some View {
         Form {
@@ -49,19 +53,19 @@ extension SettingView {
     
     var optionSection: some View {
         Section(header: Text("选项")) {
-            Toggle("显示英文名", isOn: $settings.showEnglishName)
+            Toggle("显示英文名", isOn: settingsBinding.showEnglishName)
             
             Picker(
-                selection: $settings.sorting,
+                selection: settingsBinding.sorting,
                 label: Text("排序"))
             {
-                ForEach(SettingsViewModel.Sorting.allCases, id: \.self) {
+                ForEach(AppState.Settings.Sorting.allCases, id: \.self) {
                     Text($0.text)
                 }
             }
             .pickerStyle(.navigationLink)
             
-            Toggle("只显示收藏", isOn: $settings.showFavoriteOnly)
+            Toggle("只显示收藏", isOn: settingsBinding.showFavoriteOnly)
         }
     }
     
@@ -78,6 +82,6 @@ extension SettingView {
 
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingView()
+        SettingView().environmentObject(Store())
     }
 }
