@@ -25,10 +25,20 @@ public func check<P: Publisher>(
         )
 }
 
-public func delay(_ intravel: Int, exe: () -> Void) {
-    DispatchQueue.main.asyncAfter(deadline: Date.now() + 1) {
+public func delay(_ intravel: Double, exe:@escaping () -> Void) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + intravel) {
         exe()
     }
+}
+
+public func loadPage(
+    url: URL,
+    handler: @escaping (Data?, URLResponse?, Error?) -> Void)
+{
+    URLSession.shared.dataTask(with: url) {
+        data, response, error in
+        handler(data, response, error)
+    }.resume()
 }
 
 extension Sequence {
@@ -43,3 +53,4 @@ extension Sequence {
         return result
     }
 }
+
