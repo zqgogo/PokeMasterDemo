@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct SettingView: View {
-    @ObservedObject var settings = SettingsViewModel()
+    //已废弃
+//    @ObservedObject var settings = SettingsViewModel()
+    
     @EnvironmentObject var store: Store
+    var settings: AppState.Settings {
+        store.appState.settings
+    }
+    
     var settingsBinding: Binding<AppState.Settings> {
         $store.appState.settings
     }
@@ -26,27 +32,37 @@ struct SettingView: View {
 extension SettingView {
     var accountSection: some View {
         Section(header: Text("账户")) {
-            // 1
-            Picker(
-                selection: $settings.accountBehavior,
-                label: Text(""))
-            {
-                ForEach(SettingsViewModel.AccountBehavior.allCases, id: \.self) {
-                    Text($0.text)
+            if settings.loginUser == nil {
+                Picker(
+                    selection: settingsBinding.accountBehavior,
+                    label: Text(""))
+                {
+                    ForEach(AppState.Settings.AccountBehavior.allCases, id: \.self) {
+                        Text($0.text)
+                    }
                 }
-            }
-            // 2
-            .pickerStyle(SegmentedPickerStyle())
-            
-            // 3
-            TextField("电子邮箱", text: $settings.email)
-            SecureField("密码", text: $settings.password)
-            // 4
-            if settings.accountBehavior == .register {
-                SecureField("确认密码", text: $settings.verifyPassword)
-            }
-            Button(settings.accountBehavior.text) {
-                print("登录/注册")
+                .pickerStyle(SegmentedPickerStyle())
+                
+                TextField("电子邮箱", text: settingsBinding.email)
+                SecureField("密码", text: settingsBinding.password)
+
+                if settings.accountBehavior == .register {
+                    SecureField("确认密码", text: settingsBinding.verifyPassword)
+                }
+                Button(settings.accountBehavior.text) {
+                    print("登录/注册")
+                    self.store.dispatch(
+                        .login(
+                            email: self.settings.email,
+                            password: self.settings.password
+                        )
+                    )
+                }
+            } else {
+                Text(settings.loginUser!.email)
+                Button("注销") {
+                    print("注销")
+                }
             }
         }
     }
