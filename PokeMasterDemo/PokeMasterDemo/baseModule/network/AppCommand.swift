@@ -26,11 +26,17 @@ struct LoginAppCommand: AppCommand {
                 receiveCompletion: { complete in
                     if case .failure(let error) = complete {
                         // 2
+                        store.dispatch(
+                            .accountBehaviorDone(result: .failure(error))
+                        )
                     }
                     token.unseal()
                 },
                 receiveValue: { user in
                     // 3
+                    store.dispatch(
+                        .accountBehaviorDone(result: .success(user))
+                    )
                 }
             ).seal(in: token)
     }
