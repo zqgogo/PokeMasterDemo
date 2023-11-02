@@ -13,7 +13,8 @@ struct AppState {
 }
 
 enum AppAction {
-    case login(email: String, password: String)
+    case login(email: String, password: String),
+    case accountBehaviorDone(result: Result<UserModel, AppError>)
 }
 
 extension AppState {
@@ -38,6 +39,7 @@ extension AppState {
         var showFavoriteOnly = false
         
         var loginUser: UserModel?
+        var loginRequesting = false
     }
 }
 
