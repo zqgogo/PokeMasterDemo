@@ -26,6 +26,13 @@ struct SettingView: View {
             optionSection
             actionSection
         }
+        .overlay(content: {
+            if settings.loginRequesting {
+                ProgressView {
+                    Text(settings.loginRequesting ? "登录中..." : "111")
+                }
+            }
+        })
         .alert("错误提示", isPresented: settingsBinding.isHaveError, presenting: settings.error, actions: { error in
             Button("okk") {
                 
@@ -61,7 +68,9 @@ extension SettingView {
                 }
                 
                 if settings.loginRequesting {
-                    Text("登录中...")
+                    ProgressView {
+                        Text(settings.loginRequesting ? "登录中..." : "111")
+                    }//.id(UUID())
                 } else {
                     Button(settings.accountBehavior.text) {
                         print("登录/注册")
@@ -80,6 +89,7 @@ extension SettingView {
                 }
             }
         }
+        .autocorrectionDisabled()
     }
     
     var optionSection: some View {
