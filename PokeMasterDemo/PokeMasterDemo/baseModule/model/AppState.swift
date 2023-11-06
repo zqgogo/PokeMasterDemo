@@ -15,6 +15,7 @@ struct AppState {
 enum AppAction {
     case login(email: String, password: String)
     case accountBehaviorDone(result: Result<UserModel, AppError>)
+    case signOut
 }
 
 extension AppState {
@@ -48,9 +49,12 @@ extension AppState {
             case id, name, color, favorite
         }
         
-        var showEnglishName = true
-        var sorting = Sorting.id
-        var showFavoriteOnly = false
+        @UserDefaultsStorage(initialValue: true, keypath: "showEnglishName")
+        var showEnglishName: Bool
+        @UserDefaultsStorage(initialValue: Sorting.id, keypath: "sorting")
+        var sorting: Sorting
+        @UserDefaultsStorage(initialValue: false, keypath: "showFavoriteOnly")
+        var showFavoriteOnly: Bool
         
         @FileStorage(directory: .documentDirectory, fileName: "user.json")
         var loginUser: UserModel?

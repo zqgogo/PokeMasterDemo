@@ -56,6 +56,8 @@ extension Store {
                 print("Error: \(error)")
                 appState.settings.error = error
             }
+        case .signOut:
+            appState.settings.loginUser = nil
         }
         return (appState, appCommand)
     }
