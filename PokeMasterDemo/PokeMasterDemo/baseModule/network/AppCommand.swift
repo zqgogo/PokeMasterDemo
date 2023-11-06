@@ -41,3 +41,14 @@ struct LoginAppCommand: AppCommand {
             ).seal(in: token)
     }
 }
+
+struct WriteUserAppCommand: AppCommand {
+    let user: UserModel
+    
+    func execute(in store: Store) {
+        try? FileHelper.writeJSON(
+            user,
+            to: .documentDirectory,
+            fileName: "user.json")
+    }
+}

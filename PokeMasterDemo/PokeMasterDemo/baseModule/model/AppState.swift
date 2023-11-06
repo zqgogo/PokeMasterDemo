@@ -13,7 +13,7 @@ struct AppState {
 }
 
 enum AppAction {
-    case login(email: String, password: String),
+    case login(email: String, password: String)
     case accountBehaviorDone(result: Result<UserModel, AppError>)
 }
 
@@ -28,7 +28,21 @@ extension AppState {
         var email = ""
         var password = ""
         var verifyPassword = ""
-        
+        var error: AppError? {
+            didSet {
+                let tmp = error == nil ? false : true
+                if tmp != isHaveError {
+                    isHaveError = tmp
+                }
+            }
+        }
+        var isHaveError: Bool = false {
+            didSet {
+                if error != nil, isHaveError == false {
+                    error = nil
+                }
+            }
+        }
         
         enum Sorting: CaseIterable {
             case id, name, color, favorite
@@ -38,7 +52,9 @@ extension AppState {
         var sorting = Sorting.id
         var showFavoriteOnly = false
         
+        @FileStorage(directory: .documentDirectory, fileName: "user.json")
         var loginUser: UserModel?
+        
         var loginRequesting = false
     }
 }

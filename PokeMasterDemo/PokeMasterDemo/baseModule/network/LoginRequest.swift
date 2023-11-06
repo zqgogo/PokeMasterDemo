@@ -13,7 +13,7 @@ struct LoginRequest {
     let email: String
     let password: String
     // 1
-    var publisher: AnyPublisher<UserModel, AppError> async {
+    var publisher: AnyPublisher<UserModel, AppError> {
         Future { promise in
             // 2
             DispatchQueue.global()

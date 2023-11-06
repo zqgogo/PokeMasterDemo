@@ -51,10 +51,12 @@ extension Store {
             switch result {
             case .success(let user):
                 appState.settings.loginUser = user
+                appCommand = WriteUserAppCommand(user: user)
             case .failure(let error):
                 print("Error: \(error)")
+                appState.settings.error = error
             }
-            return (appState, appCommand)
         }
+        return (appState, appCommand)
     }
 }
