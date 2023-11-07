@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PokemonList: View {
+    @EnvironmentObject var store: Store
+    
     @State var expandingIndex: Int?
     
     @State private var searchText = ""
@@ -51,7 +53,8 @@ struct PokemonList: View {
 //            .navigationBarHidden(showCancelButton) // .animation(.default) // animation does not work properly
             
             /// list有复用，scrollview也算一个思路，记录一下。
-            List(PokemonViewModel.all) { pokemon in
+//            List(PokemonViewModel.all) { pokemon in
+            List(store.appState.pokemonList.allPokemonsByID) { pokemon in
                 PokemonInfoRow(model: pokemon, expanded: self.expandingIndex == pokemon.id)
                     .onTapGesture {
                         withAnimation(.spring(response: 0.55, dampingFraction: 0.425, blendDuration: 0)) {
@@ -88,6 +91,6 @@ struct PokemonList: View {
 
 struct PokemonList_Previews: PreviewProvider {
     static var previews: some View {
-        PokemonList()
+        PokemonList().environmentObject(Store())
     }
 }

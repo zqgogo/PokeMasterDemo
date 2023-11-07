@@ -51,7 +51,7 @@ extension SettingView {
         Section(header: Text("账户")) {
             if settings.loginUser == nil {
                 Picker(
-                    selection: settingsBinding.accountBehavior,
+                    selection: settingsBinding.checker.accountBehavior,
                     label: Text(""))
                 {
                     ForEach(AppState.Settings.AccountBehavior.allCases, id: \.self) {
@@ -60,30 +60,35 @@ extension SettingView {
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 
-                TextField("电子邮箱", text: settingsBinding.email)
-                SecureField("密码", text: settingsBinding.password)
+                TextField("电子邮箱", text: settingsBinding.checker.email)
+                    .foregroundColor(settings.isEmailValid ? .green : .red)
+                SecureField("密码", text: settingsBinding.checker.password)
 
-                if settings.accountBehavior == .register {
-                    SecureField("确认密码", text: settingsBinding.verifyPassword)
+                if settings.checker.accountBehavior == .register {
+                    SecureField("确认密码", text: settingsBinding.checker.verifyPassword)
                 }
                 
-                if settings.loginRequesting {
-                    //TODO: 这儿的progressView在from和list中，第二次以后就不显示了，推测和复用机制或者from的优化机制有关。---后面再研究。----不是列表的情况下没问题。
-//                    ProgressView {
-//                        Text(settings.loginRequesting ? "登录中..." : "111")
-//                    }.id(UUID())
-                    PokeIndicatorView(isShow: settings.loginRequesting)
-                } else {
-                    Button(settings.accountBehavior.text) {
-                        print("登录/注册")
-                        self.store.dispatch(
-                            .login(
-                                email: self.settings.email,
-                                password: self.settings.password
+                //这儿包一层，或者使用不同id就可以解决progressView的刷新问题。--必须包在整个if的外层，不能仅仅是progressView自己包一层。
+                HStack {
+                    if settings.loginRequesting {
+                        //TODO: 这儿的progressView在from和list中，第二次以后就不显示了，推测和复用机制或者from的优化机制有关。---后面再研究。----不是列表的情况下没问题。
+                        ProgressView {
+                            Text(settings.loginRequesting ? "登录中..." : "111")
+                        }//.id(UUID())
+//                        PokeIndicatorView(isShow: settings.loginRequesting)
+                    } else {
+                        Button(settings.checker.accountBehavior.text) {
+                            print("登录/注册")
+                            self.store.dispatch(
+                                .login(
+                                    email: self.settings.checker.email,
+                                    password: self.settings.checker.password
+                                )
                             )
-                        )
+                        }
                     }
                 }
+                
             } else {
                 Text(settings.loginUser!.email)
                 Button("注销") {

@@ -10,6 +10,17 @@ import Combine
 
 class Store: ObservableObject {
     @Published var appState = AppState()
+    private var disposeBag = [AnyCancellable]()
+    
+    init() {
+        setupObservers()
+    }
+    
+    private func setupObservers() {
+        appState.settings.checker.isEmailValid.sink { [weak self] isValid in
+            self?.dispatch(.emailValid(valid: isValid))
+        }.store(in: &disposeBag)
+    }
     
     func dispatch(_ action: AppAction) {
 #if DEBUG
@@ -58,6 +69,27 @@ extension Store {
             }
         case .signOut:
             appState.settings.loginUser = nil
+        case .emailValid(valid: let valid):
+            appState.settings.isEmailValid = valid
+        case .loadPokemons:
+            if appState.pokemonList.loadingPokemons {
+                break
+            }
+            appState.pokemonList.loadingPokemons = true
+            appCommand = LoadPokemonsCommand()
+        case .loadPokemonsDone(result: let result):
+            appState.pokemonList.loadingPokemons = false
+            switch result {
+            case .success(let models):
+                appState.pokemonList.pokemons =
+                // 3
+                Dictionary(
+                    uniqueKeysWithValues: models.map { ($0.id, $0) }
+                )
+            case .failure(let error):
+                // 4
+                print(error)
+            }
         }
         return (appState, appCommand)
     }

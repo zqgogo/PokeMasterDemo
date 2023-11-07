@@ -8,18 +8,28 @@
 import SwiftUI
 
 struct PokemonRootView: View {
-//    @State var searchStr: String = ""
+    //    @State var searchStr: String = ""
+    @EnvironmentObject var store: Store
     
     var body: some View {
         NavigationView {
-            PokemonList().navigationBarTitle("宝可梦列表")
+            if store.appState.pokemonList.pokemons == nil {
+                // 1
+                Text("Loading...").onAppear {
+                    self.store.dispatch(.loadPokemons)
+                }
+            } else {
+                // 2
+                PokemonList()
+                    .navigationBarTitle("宝可梦列表")
+            }
         }
-//        .searchable(text: $searchStr)
+        //        .searchable(text: $searchStr)
     }
 }
 
 struct PokemonRootView_Previews: PreviewProvider {
     static var previews: some View {
-        PokemonRootView()
+        PokemonRootView().environmentObject(Store())
     }
 }
