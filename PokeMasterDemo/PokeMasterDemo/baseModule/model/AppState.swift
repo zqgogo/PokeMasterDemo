@@ -27,6 +27,7 @@ enum AppAction {
 
 extension AppState {
     struct PokemonListData {
+        //TODO: 这儿到底是否有缓存成功？--主要是获取的时候，还有没有每次都获取，另外也需要强制刷新的选项。--后面完善一下。
         @FileStorage(directory: .cachesDirectory, fileName: "pokemons.json")
         var pokemons: [Int: PokemonViewModel]?
         var loadingPokemons = false

@@ -76,6 +76,3 @@ struct LoadPokemonsCommand: AppCommand {
             .seal(in: token)
     }
 }
-
-//https://github.com/onevcat/Kingfisher.git
-
