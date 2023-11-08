@@ -19,6 +19,7 @@ enum AppAction {
     case accountBehaviorDone(result: Result<UserModel, AppError>)
     case signOut
     case emailValid(valid: Bool)
+    case passwordValid(valid: Bool)
     case loadPokemons
     case loadPokemonsDone(
     result: Result<[PokemonViewModel], AppError>
@@ -127,10 +128,28 @@ extension AppState {
                 .map { $0 && ($1 || $2) }
                 .eraseToAnyPublisher()
             }
+            
+            /// 只处理注册
+            var isPasswordValid: AnyPublisher<Bool, Never> {
+                let isReg = $accountBehavior.map { $0 == .register }
+                let passwordElement = $password.map { $0 }
+                let verifyPasswordElement = $verifyPassword.map { $0 }
+                return Publishers.CombineLatest3(
+                    isReg, passwordElement, verifyPasswordElement
+                )
+                .map { currIsReg, pwd, verPwd in
+                    if currIsReg {
+                        return !pwd.isEmpty && !verPwd.isEmpty && pwd == verPwd
+                    }
+                    return true
+                }
+                .eraseToAnyPublisher()
+            }
         }
         
         var checker = AccountChecker()
         var isEmailValid = false
+        var isPasswordValid = false
     }
 }
 

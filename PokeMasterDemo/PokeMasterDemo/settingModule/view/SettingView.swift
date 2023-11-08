@@ -78,14 +78,20 @@ extension SettingView {
 //                        PokeIndicatorView(isShow: settings.loginRequesting)
                     } else {
                         Button(settings.checker.accountBehavior.text) {
-                            print("登录/注册")
-                            self.store.dispatch(
-                                .login(
-                                    email: self.settings.checker.email,
-                                    password: self.settings.checker.password
+                            if settings.checker.accountBehavior == .register {
+                                print("注册")
+                                
+                            } else {
+                                print("登录")
+                                self.store.dispatch(
+                                    .login(
+                                        email: self.settings.checker.email,
+                                        password: self.settings.checker.password
+                                    )
                                 )
-                            )
+                            }
                         }
+                        .disabled(!settings.isPasswordValid)
                     }
                 }
                 

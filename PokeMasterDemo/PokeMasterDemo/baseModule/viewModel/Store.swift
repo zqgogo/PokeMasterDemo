@@ -21,6 +21,10 @@ class Store: ObservableObject {
         appState.settings.checker.isEmailValid.sink { [weak self] isValid in
             self?.dispatch(.emailValid(valid: isValid))
         }.store(in: &disposeBag)
+        
+        appState.settings.checker.isPasswordValid.sink { [weak self] isValid in
+            self?.dispatch(.passwordValid(valid: isValid))
+        }.store(in: &disposeBag)
     }
     
     func dispatch(_ action: AppAction) {
@@ -73,6 +77,8 @@ extension Store {
             appState.settings.loginUser = nil
         case .emailValid(valid: let valid):
             appState.settings.isEmailValid = valid
+        case .passwordValid(valid: let valid):
+            appState.settings.isPasswordValid = valid
         case .loadPokemons:
             if appState.pokemonList.loadingPokemons {
                 break
