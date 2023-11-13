@@ -73,13 +73,15 @@ extension SettingView {
                     if settings.loginRequesting {
                         //TODO: 这儿的progressView在from和list中，第二次以后就不显示了，推测和复用机制或者from的优化机制有关。---后面再研究。----不是列表的情况下没问题。
                         ProgressView {
-                            Text(settings.loginRequesting ? "登录中..." : "111")
-                        }//.id(UUID())
+                            Text(settings.checker.accountBehavior == .register ? "注册中..." : "登录中...")
+                        }
+                        //.id(UUID())
 //                        PokeIndicatorView(isShow: settings.loginRequesting)
                     } else {
                         Button(settings.checker.accountBehavior.text) {
                             if settings.checker.accountBehavior == .register {
                                 print("注册")
+                                self.store.dispatch(.register(email: self.settings.checker.email, password: self.settings.checker.password))
                                 
                             } else {
                                 print("登录")
@@ -128,6 +130,7 @@ extension SettingView {
         Section {
             Button("清空缓存") {
                 print("清空缓存")
+                self.store.dispatch(.clearCache)
             }
             .foregroundColor(.red)
         }

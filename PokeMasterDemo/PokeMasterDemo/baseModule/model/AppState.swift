@@ -16,6 +16,7 @@ struct AppState {
 
 enum AppAction {
     case login(email: String, password: String)
+    case register(email: String, password: String)
     case accountBehaviorDone(result: Result<UserModel, AppError>)
     case signOut
     case emailValid(valid: Bool)
@@ -24,6 +25,7 @@ enum AppAction {
     case loadPokemonsDone(
     result: Result<[PokemonViewModel], AppError>
     )
+    case clearCache
 }
 
 extension AppState {

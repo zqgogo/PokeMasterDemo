@@ -14,6 +14,14 @@ enum AppError: Error, Identifiable {
     case passwordWrong
     case networkingFailed(Error)
 }
+
+class MyError: NSError {
+    
+    override var localizedDescription: String {
+        (userInfo["msg"] as? String) ?? "unknow error"
+    }
+}
+
 // 3
 extension AppError: LocalizedError {
     var localizedDescription: String {

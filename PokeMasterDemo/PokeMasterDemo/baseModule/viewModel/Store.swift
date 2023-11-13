@@ -98,6 +98,22 @@ extension Store {
                 // 4
                 print(error)
             }
+        case .register(email: let email, password: let password):
+            guard !appState.settings.loginRequesting else {
+                break
+            }
+            appState.settings.loginRequesting = true
+            // 2
+            appCommand = RegisterAppCommand(
+                email: email, password: password
+            )
+        case .clearCache:
+            appState.pokemonList.pokemons = nil
+            // 清理登录信息
+            try? FileHelper.delete(
+                from: .documentDirectory,
+                fileName: "user.json"
+            )
         }
         return (appState, appCommand)
     }
