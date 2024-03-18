@@ -15,6 +15,8 @@ struct ChatView: View {
     @State private var isStreaming: Bool = false
     @State private var isLoading: Bool = false
     
+    @State private var streamContent = ""
+    
     let apiKey = "2294b6327344df7d347bc489368dcd17"
     let secret = "sk-4fe70ed22136a48f3e882d448cbc9fa5"
     
@@ -104,10 +106,12 @@ struct ChatView: View {
     
     func streamChat() {
         isStreaming = true
+        streamContent = ""
+        messages.append(["role": "Assistant", "content": "..."])
         Task {
             try await streamRequest { content in
                 DispatchQueue.main.async {
-                    messages.append(["role": "Assistant", "content": content])
+                    messages[messages.count-1]["content"] = content
                 }
             }
             isStreaming = false
@@ -167,14 +171,15 @@ struct ChatView: View {
         var content = ""
         for try await line in stream.lines {
             if line.starts(with: "data:") {
-                let jsonData = line.dropFirst(6).data(using: .utf8)
+                let jsonData = line.dropFirst(5).data(using: .utf8)
                 if let jsonString = String(data: jsonData!, encoding: .utf8), !jsonString.isEmpty {
                     if let json = try? JSONSerialization.jsonObject(with: jsonData!, options: []) as? [String: Any],
                        let data = json["data"] as? [String: Any],
                        let contentChunk = data["content"] as? String {
-                        content += contentChunk
-                    } else if let json = try? JSONSerialization.jsonObject(with: jsonData!, options: []) as? [String: Any], let data = json["data"] as? [String: Any], let contentChunk = data["content"] as? String {
-                        content += contentChunk
+//                        content += contentChunk
+                        if !contentChunk.isEmpty {
+                            updateCallback(contentChunk)
+                        }
                     }
                 }
             } else if line == "data:" {
@@ -183,10 +188,6 @@ struct ChatView: View {
                     content = ""
                 }
             }
-        }
-        
-        if !content.isEmpty {
-            updateCallback(content)
         }
     }
 }
