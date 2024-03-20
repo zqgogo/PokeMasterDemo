@@ -117,6 +117,13 @@ extension Store {
                 from: .documentDirectory,
                 fileName: "user.json"
             )
+        case .togglePanelPresenting(presenting: let target, selIndex: let selIndex):
+            appState.pokemonList.selectionState.panelPresented = target
+            if target {
+                appState.pokemonList.selectionState.selIndex = selIndex
+            } else {
+                appState.pokemonList.selectionState.selIndex = nil
+            }
         }
         return (appState, appCommand)
     }

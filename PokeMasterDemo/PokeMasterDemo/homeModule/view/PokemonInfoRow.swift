@@ -9,8 +9,11 @@ import SwiftUI
 import Kingfisher
 
 struct PokemonInfoRow: View {
+
     let model: PokemonViewModel
     var expanded: Bool
+    var panelCallback: (() -> Void)?
+    var favCallback: (() -> Void)?
     
     var body: some View {
         VStack {
@@ -40,24 +43,42 @@ struct PokemonInfoRow: View {
                 Spacer()
                 Button(action: {
                     print("fav")
+                    favCallback?()
                 }) {
                     Image(systemName: "star")
                         .modifier(ToolButtonModifier())
                 }
+                .buttonStyle(BorderlessButtonStyle())
                 
                 Button(action: {
                     print("panel")
+                    panelCallback?()
                 }) {
                     Image(systemName: "chart.bar")
                         .modifier(ToolButtonModifier())
                 }
+                .buttonStyle(BorderlessButtonStyle())
                 
-                Button(action: {
-                    print("web")
-                }) {
-                    Image(systemName: "info.circle")
-                        .modifier(ToolButtonModifier())
-                }
+//                Button(action: {
+//                    print("web")
+//                }) {
+//                    Image(systemName: "info.circle")
+//                        .modifier(ToolButtonModifier())
+//                }
+//                .buttonStyle(BorderlessButtonStyle())
+                NavigationLink(
+                    destination:
+                        PKSafariView(url: model.detailPageURL)
+                        .navigationBarTitle(
+                            Text(model.name),
+                            displayMode: .inline
+                        ),
+                    label: {
+                        Image(systemName: "info.circle")
+                            .modifier(ToolButtonModifier())
+                    }
+                )
+                .buttonStyle(PlainButtonStyle())
             }
             .padding(.bottom, 12)
             .opacity(expanded ? 1.0 : 0.0)

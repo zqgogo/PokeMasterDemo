@@ -25,8 +25,10 @@ struct PokemonInfoPanel: View {
             }
 
             topIndicator
-            Header(model: model)
-            pokemonDescription
+            Group {
+                Header(model: model)
+                pokemonDescription
+            }.animation(nil, value: 1)
             Divider()
             AbilityList(model: model, abilityModels: abilities)
         }

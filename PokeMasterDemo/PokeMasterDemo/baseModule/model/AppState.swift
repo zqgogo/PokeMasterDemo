@@ -26,6 +26,7 @@ enum AppAction {
     result: Result<[PokemonViewModel], AppError>
     )
     case clearCache
+    case togglePanelPresenting(presenting: Bool, selIndex: Int)
 }
 
 extension AppState {
@@ -40,6 +41,13 @@ extension AppState {
                 return []
             }
             return pokemons.sorted { $0.id < $1.id }
+        }
+        
+        var selectionState: PokemonSelectionState = PokemonSelectionState()
+        
+        struct PokemonSelectionState {
+            var panelPresented: Bool = false
+            var selIndex: Int?
         }
     }
         
