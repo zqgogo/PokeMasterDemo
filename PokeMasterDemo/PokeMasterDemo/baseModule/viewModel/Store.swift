@@ -83,6 +83,7 @@ extension Store {
             if appState.pokemonList.loadingPokemons {
                 break
             }
+            appState.pokemonList.loadError = nil
             appState.pokemonList.loadingPokemons = true
             appCommand = LoadPokemonsCommand()
         case .loadPokemonsDone(result: let result):
@@ -94,9 +95,11 @@ extension Store {
                 Dictionary(
                     uniqueKeysWithValues: models.map { ($0.id, $0) }
                 )
+                appState.pokemonList.loadError = nil
             case .failure(let error):
                 // 4
                 print(error)
+                appState.pokemonList.loadError = error
             }
         case .register(email: let email, password: let password):
             guard !appState.settings.loginRequesting else {

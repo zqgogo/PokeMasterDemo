@@ -14,15 +14,36 @@ struct PokemonRootView: View {
     var body: some View {
         NavigationView {
             if store.appState.pokemonList.pokemons == nil {
-                // 1
-                Text("Loading...").onAppear {
-                    self.store.dispatch(.loadPokemons)
+                if let err = store.appState.pokemonList.loadError {
+                    Button(action: {
+                        self.store.dispatch(.loadPokemons)
+                    }, label: {
+                        VStack {
+                            HStack {
+                                Image("arrow.clockwise")
+                                Text("Retry")
+                            }
+                            Text(err.localizedDescription)
+                                .font(Font(UIFont.systemFont(ofSize: 12)))
+                                .foregroundColor(.gray)
+
+                        }
+                    })
+                } else {
+                    if store.appState.pokemonList.loadingPokemons {
+                        Text("Loading...")
+                    } else {
+                        Text("unknow")
+                    }
                 }
             } else {
                 // 2
                 PokemonList()
                     .navigationBarTitle("宝可梦列表")
             }
+        }
+        .onAppear {
+            self.store.dispatch(.loadPokemons)
         }
         //        .searchable(text: $searchStr)
     }

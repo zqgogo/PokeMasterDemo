@@ -11,10 +11,10 @@ import SwiftUI
 struct PokeMasterDemoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            ContentView()
 //            PokemonList()
 //            SettingView()
-//            MainTab().environmentObject(Store())
+            MainTab().environmentObject(Store())
         }
     }
 }

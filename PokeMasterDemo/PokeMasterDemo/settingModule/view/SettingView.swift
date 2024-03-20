@@ -93,7 +93,7 @@ extension SettingView {
                                 )
                             }
                         }
-                        .disabled(!settings.isPasswordValid)
+                        .disabled(!settings.isPasswordValid && !settings.isEmailValid)
                     }
                 }
                 

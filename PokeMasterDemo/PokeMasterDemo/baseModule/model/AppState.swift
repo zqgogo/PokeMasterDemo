@@ -34,6 +34,7 @@ extension AppState {
         @FileStorage(directory: .cachesDirectory, fileName: "pokemons.json")
         var pokemons: [Int: PokemonViewModel]?
         var loadingPokemons = false
+        var loadError: AppError?
         var allPokemonsByID: [PokemonViewModel] {
             guard let pokemons = pokemons?.values else {
                 return []
