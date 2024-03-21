@@ -12,6 +12,7 @@ struct AppState {
     // 1
     var settings = Settings()
     var pokemonList = PokemonListData()
+    var mainTab = MainTabConfig()
 }
 
 enum AppAction {
@@ -27,6 +28,7 @@ enum AppAction {
     )
     case clearCache
     case togglePanelPresenting(presenting: Bool, selIndex: Int)
+    case closeDetailWebView
 }
 
 extension AppState {
@@ -43,6 +45,7 @@ extension AppState {
             return pokemons.sorted { $0.id < $1.id }
         }
         
+        var isDetailWebViewShow = false
         var selectionState: PokemonSelectionState = PokemonSelectionState()
         
         struct PokemonSelectionState {
@@ -161,6 +164,14 @@ extension AppState {
         var checker = AccountChecker()
         var isEmailValid = false
         var isPasswordValid = false
+    }
+    
+    struct MainTabConfig {
+        enum TabItemIndex: Hashable {
+            case list, settings
+        }
+        
+        var selIndex = TabItemIndex.list
     }
 }
 

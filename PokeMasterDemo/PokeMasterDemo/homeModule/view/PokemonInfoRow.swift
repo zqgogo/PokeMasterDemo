@@ -9,12 +9,13 @@ import SwiftUI
 import Kingfisher
 
 struct PokemonInfoRow: View {
+    @EnvironmentObject var store: Store
 
     let model: PokemonViewModel
     var expanded: Bool
     var panelCallback: (() -> Void)?
     var favCallback: (() -> Void)?
-    
+        
     var body: some View {
         VStack {
             HStack {
@@ -57,28 +58,42 @@ struct PokemonInfoRow: View {
                     Image(systemName: "chart.bar")
                         .modifier(ToolButtonModifier())
                 }
+                // 设置样式，激活触发范围。
                 .buttonStyle(BorderlessButtonStyle())
                 
-//                Button(action: {
-//                    print("web")
-//                }) {
+                //TODO: 这儿单独使用NavigationLink会有各种各样的问题，主要是手势冲突，单击优先响应cell，长按才响应nav，而且范围也有问题。---只能暂时先这样解决，套到按钮里，控制参数变化来搞定。
+                Button(action: {
+                    print("web")
+                    store.appState.pokemonList.isDetailWebViewShow = true
+                }) {
 //                    Image(systemName: "info.circle")
 //                        .modifier(ToolButtonModifier())
-//                }
-//                .buttonStyle(BorderlessButtonStyle())
-                NavigationLink(
-                    destination:
-                        PKSafariView(url: model.detailPageURL)
-                        .navigationBarTitle(
-                            Text(model.name),
-                            displayMode: .inline
-                        ),
-                    label: {
-                        Image(systemName: "info.circle")
-                            .modifier(ToolButtonModifier())
+                    //MARK: 去掉小箭头，设置范围。
+                    HStack {
+                        NavigationLink(
+                            destination:
+                                PKSafariView(url: model.detailPageURL) {
+                                    store.appState.pokemonList.isDetailWebViewShow = false
+                                }
+                                .navigationBarTitle(
+                                    Text(model.name),
+                                    displayMode: .inline
+                                ), isActive: expanded ? $store.appState.pokemonList.isDetailWebViewShow : .constant(false),
+                            label: {
+    //                                Image(systemName: "info.circle")
+    //                                    .modifier(ToolButtonModifier())
+                                EmptyView()
+                            }
+                        )
+                        .opacity(0)
+                        .background {
+                            Image(systemName: "info.circle")
+                                .modifier(ToolButtonModifier())
+                        }
                     }
-                )
-                .buttonStyle(PlainButtonStyle())
+                }
+                .buttonStyle(BorderlessButtonStyle())
+                .frame(width: 45, height: 30, alignment: .center)
             }
             .padding(.bottom, 12)
             .opacity(expanded ? 1.0 : 0.0)
@@ -118,6 +133,30 @@ extension PokemonInfoRow {
                 .font(.system(size: 25))
                 .foregroundColor(.white)
                 .frame(width: 30, height: 30)
+        }
+    }
+    
+    struct StaticButtonStyle: ButtonStyle {
+        /// 设置样式，去掉小箭头--.buttonStyle(StaticButtonStyle())
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
+        }
+    }
+    
+    struct GestureView<Content: View>: View {
+        let content: Content
+        
+        init(@ViewBuilder content: () -> Content) {
+            self.content = content()
+        }
+        
+        var body: some View {
+            content
+                .contentShape(Rectangle()) // 确保整个区域可以响应手势
+//                .gesture(TapGesture().onEnded({ _ in
+//                    // 处理点击事件
+//                    print("web-tap")
+//                }))
         }
     }
 }

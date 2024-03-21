@@ -49,6 +49,7 @@ struct PokemonList: View {
                     .foregroundColor(Color(.systemBlue))
                 }
             }
+            .background()    //just add this line
             .padding(.horizontal)
 //            .navigationBarHidden(showCancelButton) // .animation(.default) // animation does not work properly
             

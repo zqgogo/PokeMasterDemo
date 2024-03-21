@@ -124,6 +124,8 @@ extension Store {
             } else {
                 appState.pokemonList.selectionState.selIndex = nil
             }
+        case .closeDetailWebView:
+            appState.pokemonList.isDetailWebViewShow = false
         }
         return (appState, appCommand)
     }

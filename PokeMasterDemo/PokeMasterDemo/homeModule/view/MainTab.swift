@@ -27,7 +27,7 @@ struct MainTab: View {
         UITabBar.appearance().backgroundImage = UIImage()
         //        UITabBar.appearance().unselectedItemTintColor = .red
     }
-    
+        
     var body: some View {
         NavigationView {
             TabView {
