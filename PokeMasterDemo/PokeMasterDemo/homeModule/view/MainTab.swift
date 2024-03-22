@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct MainTab: View {
+    @Environment(\.openURL) var openURL
     @EnvironmentObject var store: Store
 
     init() {
@@ -30,17 +32,20 @@ struct MainTab: View {
         
     var body: some View {
         NavigationView {
-            TabView {
+            TabView(selection: $store.appState.mainTab.selIndex) {
                 // 1
                 PokemonRootView().tabItem {
                     // 2
                     Image(systemName: "list.bullet.below.rectangle").foregroundColor(.black)
                     Text("列表").foregroundColor(.black)
                 }
+                .tag(AppState.MainTabConfig.TabItemIndex.list)
+                
                 SettingRootView().tabItem {
                     Image(systemName: "gear")
                     Text("设置")
                 }
+                .tag(AppState.MainTabConfig.TabItemIndex.settings)
             }
             // 3
             .edgesIgnoringSafeArea(.top)
@@ -49,6 +54,21 @@ struct MainTab: View {
             }
     //        .overlay(panel)
         }
+        .onOpenURL(perform: { url in
+            print(url.absoluteString)
+            guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
+                return
+            }
+            switch (components.scheme, components.host) {
+            case ("pkmaster", "showPanel"):
+                guard let idQuery = components.queryItems?.first(where: {
+                    $0.name == "id"
+                }), let strId = idQuery.value, let id = Int(strId), id >= 1, id <= 30 else { return }
+                store.appState.pokemonList.selectionState = .init(panelPresented: true, selIndex: id)
+            default:
+                break
+            }
+        })
     }
     
     var panel: some View {
