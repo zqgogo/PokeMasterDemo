@@ -7,6 +7,8 @@
 
 import UIKit
 import SwiftUI
+import Metal
+import MetalKit
 
 struct PokeIndicatorView: UIViewRepresentable {
     
@@ -25,4 +27,40 @@ struct PokeIndicatorView: UIViewRepresentable {
             isShow ? view.startAnimating() : view.stopAnimating()
         }
     }
+}
+
+struct TestView: UIViewRepresentable {
+    
+    private let vc = TestMetalViewController()
+    
+    func makeUIView(context: Context) -> some UIView {
+        print("test-makeUIView")
+        return vc.view!
+    }
+    
+    func updateUIView(_ uiView: UIViewType, context: Context) {
+        
+    }
+    
+//    func makeCoordinator() -> Coordinator {
+//        Coordinator(self)
+//    }
+}
+
+extension TestView {
+//    class Coordinator: NSObject, MTKViewDelegate {
+//        var metalView: TestView
+//        
+//        init(_ metalView: TestView) {
+//            self.metalView = metalView
+//        }
+//        
+//        func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+//            
+//        }
+//        
+//        func draw(in view: MTKView) {
+//            
+//        }
+//    }
 }

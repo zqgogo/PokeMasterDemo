@@ -16,13 +16,17 @@ struct ContentView: View {
     ]
     
     var body: some View {
-        //        VStack {
-        //            Image(systemName: "globe")
-        //                .imageScale(.large)
-        //                .foregroundColor(.accentColor)
-        //            Text("Hello, world!")
-        //        }
-        //        .padding()
+        VStack {
+            TestView()
+                .background(.gray)
+                .frame(width: 300, height: 300)
+            
+            Image(systemName: "globe")
+                .imageScale(.large)
+                .foregroundColor(.accentColor)
+            Text("Hello, world!")
+        }
+        .padding()
         //        ChatView()
         HStack(alignment: .select) {
             Text("User:")
