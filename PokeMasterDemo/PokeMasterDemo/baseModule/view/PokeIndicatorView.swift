@@ -45,10 +45,10 @@ struct TestView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
-//        vc.isOn_x = isOn_x
-//        vc.isOn_y = isOn_y
-//        vc.isOn_z = isOn_z
-//        vc.slideValue = slideValue
+        vc.isOn_x = isOn_x
+        vc.isOn_y = isOn_y
+        vc.isOn_z = isOn_z
+        vc.slideValue = slideValue
     }
     
 //    func makeCoordinator() -> Coordinator {
