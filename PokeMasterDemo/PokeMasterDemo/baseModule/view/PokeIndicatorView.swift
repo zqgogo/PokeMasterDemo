@@ -31,7 +31,8 @@ struct PokeIndicatorView: UIViewRepresentable {
 
 struct TestView: UIViewRepresentable {
     
-    private let vc = TestMetalViewController()
+//    private let vc = TestMetalViewController()
+    private let vc = TestMetalRoateViewController()
     
     func makeUIView(context: Context) -> some UIView {
         print("test-makeUIView")

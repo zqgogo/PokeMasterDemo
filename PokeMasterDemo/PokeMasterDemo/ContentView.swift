@@ -15,16 +15,41 @@ struct ContentView: View {
         "tyyqa | Lixiao Yang"
     ]
     
+    @State var toggleX = false
+    @State var toggleY = false
+    @State var toggleZ = false
+    @State var slideRate: CGFloat = 0
+    
     var body: some View {
         VStack {
+            HStack {
+                VStack {
+                    Toggle(isOn: $toggleX) {
+                        Text("X轴")
+                    }
+                    Toggle(isOn: $toggleY) {
+                        Text("Y轴")
+                    }
+                    Toggle(isOn: $toggleZ) {
+                        Text("Z轴")
+                    }
+                }.padding()
+                
+                VStack {
+                    Text("旋转速率: \(slideRate)")
+                    Slider(value: $slideRate) {
+                        Text("旋转速率")
+                    } minimumValueLabel: {
+                        Text("0")
+                    } maximumValueLabel: {
+                        Text("10")
+                    }
+                }
+            }
+            
             TestView()
                 .background(.gray)
-                .frame(width: 300, height: 300)
-            
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+                .frame(width: 200, height: 200)
         }
         .padding()
         //        ChatView()
