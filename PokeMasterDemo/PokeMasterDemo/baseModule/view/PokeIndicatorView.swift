@@ -32,7 +32,12 @@ struct PokeIndicatorView: UIViewRepresentable {
 struct TestView: UIViewRepresentable {
     
 //    private let vc = TestMetalViewController()
-    private let vc = TestMetalRoateViewController()
+    var vc = TestMetalRoateViewController()
+    
+    var slideValue: CGFloat
+    var isOn_x: Bool
+    var isOn_y: Bool
+    var isOn_z: Bool
     
     func makeUIView(context: Context) -> some UIView {
         print("test-makeUIView")
@@ -40,7 +45,10 @@ struct TestView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
-        
+//        vc.isOn_x = isOn_x
+//        vc.isOn_y = isOn_y
+//        vc.isOn_z = isOn_z
+//        vc.slideValue = slideValue
     }
     
 //    func makeCoordinator() -> Coordinator {

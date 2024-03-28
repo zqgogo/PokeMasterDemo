@@ -23,9 +23,15 @@ class TestMetalRoateViewController: UIViewController {
     var indexs: MTLBuffer?
     var indexCount: Int = 0
     
-    var rotate_x = 0.2
-    var rotate_y = 0.3
-    var rotate_z = CGFloat.pi
+    
+    var slideValue: CGFloat = 0.01
+    var isOn_x: Bool = false
+    var isOn_y: Bool = false
+    var isOn_z: Bool = false
+    
+    var rotate_x: CGFloat = 0
+    var rotate_y: CGFloat = 0
+    var rotate_z: CGFloat = .pi
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -159,14 +165,14 @@ class TestMetalRoateViewController: UIViewController {
         let projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(90.0), Float(aspect), 0.1, 10.0)
         var modelViewMatrix = GLKMatrix4Translate(GLKMatrix4Identity, 0.0, 0.0, -2.0)
         
-//        if rotationX.isOn {
-//            x += slider.value
-//        }
-//        if rotationY.isOn {
-//            y += slider.value
-//        }
-//        if rotationZ.isOn {
-//            z += slider.value
+        if isOn_x {
+            rotate_x += slideValue
+        }
+        if isOn_y {
+            rotate_y += slideValue
+        }
+//        if isOn_z {
+            rotate_z += slideValue
 //        }
         
         modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, Float(rotate_x), 1, 0, 0)
@@ -189,6 +195,7 @@ extension TestMetalRoateViewController: MTKViewDelegate {
     }
     
     func draw(in view: MTKView) {
+        print("draw-\(rotate_z)")
         guard let commandBuffer = commandQueue?.makeCommandBuffer(),
               let renderPassDescriptor = view.currentRenderPassDescriptor,
               let indexBuffers = indexs else { return }

@@ -36,7 +36,7 @@ struct ContentView: View {
                 }.padding()
                 
                 VStack {
-                    Text("旋转速率: \(slideRate)")
+                    Text("旋转速率: \(slideRate / 20)")
                     Slider(value: $slideRate) {
                         Text("旋转速率")
                     } minimumValueLabel: {
@@ -47,7 +47,7 @@ struct ContentView: View {
                 }
             }
             
-            TestView()
+            TestView(slideValue: slideRate, isOn_x: toggleX, isOn_y: toggleY, isOn_z: toggleZ)
                 .background(.gray)
                 .frame(width: 200, height: 200)
         }
