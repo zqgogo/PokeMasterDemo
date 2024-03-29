@@ -47,7 +47,7 @@ struct ContentView: View {
                 }
             }
             
-            TestView(slideValue: slideRate, isOn_x: toggleX, isOn_y: toggleY, isOn_z: toggleZ)
+            TestVcView(slideValue: slideRate, isOn_x: toggleX, isOn_y: toggleY, isOn_z: toggleZ)
                 .background(.gray)
                 .frame(width: 200, height: 200)
         }

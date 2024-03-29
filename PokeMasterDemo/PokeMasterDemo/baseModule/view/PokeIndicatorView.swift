@@ -73,3 +73,31 @@ extension TestView {
 //        }
 //    }
 }
+
+// MARK: - viewcontroller
+struct TestVcView: UIViewControllerRepresentable {
+        
+    var slideValue: CGFloat
+    var isOn_x: Bool
+    var isOn_y: Bool
+    var isOn_z: Bool
+    
+    func makeUIViewController(context: Context) -> some UIViewController {
+        print("test-makeUIView-vc")
+        return TestMetalRoateViewController()
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        guard let vc = uiViewController as? TestMetalRoateViewController else {
+            return
+        }
+        vc.isOn_x = isOn_x
+        vc.isOn_y = isOn_y
+        vc.isOn_z = isOn_z
+        vc.slideValue = slideValue
+    }
+    
+//    func makeCoordinator() -> Coordinator {
+//        Coordinator(self)
+//    }
+}

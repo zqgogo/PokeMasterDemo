@@ -167,13 +167,16 @@ class TestMetalRoateViewController: UIViewController {
         
         if isOn_x {
             rotate_x += slideValue
+            rotate_x = fmod(rotate_x, 360.0)
         }
         if isOn_y {
             rotate_y += slideValue
+            rotate_y = fmod(rotate_y, 360.0)
         }
-//        if isOn_z {
+        if isOn_z {
             rotate_z += slideValue
-//        }
+            rotate_z = fmod(rotate_z, 360.0)
+        }
         
         modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, Float(rotate_x), 1, 0, 0)
         modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, Float(rotate_y), 0, 1, 0)
@@ -195,7 +198,6 @@ extension TestMetalRoateViewController: MTKViewDelegate {
     }
     
     func draw(in view: MTKView) {
-        print("draw-\(rotate_z)")
         guard let commandBuffer = commandQueue?.makeCommandBuffer(),
               let renderPassDescriptor = view.currentRenderPassDescriptor,
               let indexBuffers = indexs else { return }
