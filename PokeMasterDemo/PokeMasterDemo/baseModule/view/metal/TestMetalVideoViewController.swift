@@ -70,8 +70,11 @@ class TestMetalVideoViewController: UIViewController {
         if let connection = mCaptureDeviceOutput.connection(with: .video) {
             connection.videoOrientation = .portrait
         }
-        
-        mCaptureSession.startRunning()
+                
+        // 在后台队列中启动会话
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.mCaptureSession.startRunning()
+        }
     }
     
 }
