@@ -178,10 +178,6 @@ extension TestMetalGrayViewController: MTKViewDelegate {
     func draw(in view: MTKView) {
         guard let commandBuffer = commandQueue?.makeCommandBuffer() else { return }
         
-//        commandBuffer.addCompletedHandler { (buffer) in
-//            buffer.commit()
-//        }
-        
         // 创建计算指令的编码器
         guard let computeEncoder = commandBuffer.makeComputeCommandEncoder() else { return }
         computeEncoder.setComputePipelineState(computePipelineState!)
