@@ -106,6 +106,7 @@ extension TestMetalVideoViewController: AVCaptureVideoDataOutputSampleBufferDele
             let height = CVPixelBufferGetHeight(pixelBuffer)
 
             var tmpTexture: CVMetalTexture?
+            //CVMetalTextureCacheCreateTextureFromImage这个似乎只有真机才行，模拟器不行。
             let status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, textureCache!, pixelBuffer, nil, .bgra8Unorm, Int(width), Int(height), 0, &tmpTexture)
             
             if status == kCVReturnSuccess {
