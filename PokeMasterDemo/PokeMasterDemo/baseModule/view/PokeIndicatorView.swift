@@ -86,7 +86,8 @@ struct TestVcView: UIViewControllerRepresentable {
         print("test-makeUIView-vc")
 //        return TestMetalRoateViewController()
 //        return TestMetalVideoViewController()
-        return TestMetalGrayViewController()
+//        return TestMetalGrayViewController()
+        return TestMetalVideoPlayViewController()
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
