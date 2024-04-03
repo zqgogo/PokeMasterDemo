@@ -34,15 +34,15 @@ class TestMetalVideoPlayViewController: UIViewController {
         view = mtkView
         mtkView.delegate = self
         
-        if let device = mtkView.device {
-            //kCVReturnSuccess
-            let _ = CVMetalTextureCacheCreate(nil, nil, device, nil, &textureCache)
-        }
-        
         let url = Bundle.main.url(forResource: "test", withExtension: "mov")
         reader = LYAssetReader(withUrl: url!)
         
         viewportSize = vector_uint2(UInt32(UInt(mtkView.drawableSize.width)), UInt32(UInt(mtkView.drawableSize.height)))
+        
+        if let device = mtkView.device {
+            //kCVReturnSuccess
+            let _ = CVMetalTextureCacheCreate(nil, nil, device, nil, &textureCache)
+        }
         
         customInit()
     }
@@ -69,7 +69,7 @@ class TestMetalVideoPlayViewController: UIViewController {
         let kColorConversion601FullRangeOffset: vector_float3 = simd_make_float3(-(16.0/255.0), -0.5, -0.5)
         
         var matrix = LYConvertMatrix(matrix: kColorConversion601FullRangeMatrix, offset: kColorConversion601FullRangeOffset)
-        convertMatrix = mtkView.device?.makeBuffer(bytes: &matrix, length: MemoryLayout<LYConvertMatrix>.size, options: [])
+        convertMatrix = mtkView.device?.makeBuffer(bytes: &matrix, length: MemoryLayout<LYConvertMatrix>.stride, options: [])
     }
     
     
@@ -158,7 +158,10 @@ extension TestMetalVideoPlayViewController: MTKViewDelegate {
         renderEncoder.setViewport(MTLViewport(originX: 0.0, originY: 0.0, width: Double(viewportSize.x), height: Double(viewportSize.y), znear: -1.0, zfar: 1.0))
         renderEncoder.setRenderPipelineState(pipelineState!)
         renderEncoder.setVertexBuffer(vertices, offset: 0, index: LYVertexInputIndex.vertices.rawValue)
+        
         setupTexture(withEncoder: renderEncoder, buffer: sampleBuffer)
+        
+        renderEncoder.setFragmentBuffer(convertMatrix!, offset: 0, index: LYFragmentBufferIndex.matrix.rawValue)
         renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: Int(numVertices))
         renderEncoder.endEncoding()
         commandBuffer.present(view.currentDrawable!)
