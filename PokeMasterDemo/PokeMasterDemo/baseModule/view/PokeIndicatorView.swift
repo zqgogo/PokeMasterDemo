@@ -87,7 +87,8 @@ struct TestVcView: UIViewControllerRepresentable {
 //        return TestMetalRoateViewController()
 //        return TestMetalVideoViewController()
 //        return TestMetalGrayViewController()
-        return TestMetalVideoPlayViewController()
+//        return TestMetalVideoPlayViewController()
+        return TestMetalSobelViewController()
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {

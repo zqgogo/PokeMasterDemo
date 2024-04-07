@@ -103,6 +103,8 @@
 		0BA835E12BBCF30300C2BFC0 /* TestMetalVideoPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA835E02BBCF30300C2BFC0 /* TestMetalVideoPlayViewController.swift */; };
 		0BA835E32BBD383300C2BFC0 /* shaders_5.metal in Sources */ = {isa = PBXBuildFile; fileRef = 0BA835E22BBD383300C2BFC0 /* shaders_5.metal */; };
 		0BA835E62BBD38B100C2BFC0 /* test.mov in Resources */ = {isa = PBXBuildFile; fileRef = 0BA835E52BBD38B100C2BFC0 /* test.mov */; };
+		0BA835E82BC2508C00C2BFC0 /* TestMetalSobelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA835E72BC2508C00C2BFC0 /* TestMetalSobelViewController.swift */; };
+		0BA835EA2BC27C8800C2BFC0 /* shaders_6.metal in Sources */ = {isa = PBXBuildFile; fileRef = 0BA835E92BC27C8800C2BFC0 /* shaders_6.metal */; };
 		0BC1E6912AE2936400488624 /* PokemonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1E6902AE2936300488624 /* PokemonList.swift */; };
 		0BC1E6932AE61C1B00488624 /* PokemonInfoPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1E6922AE61C1B00488624 /* PokemonInfoPanel.swift */; };
 		0BC1E6962AE67A8400488624 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1E6952AE67A8400488624 /* BlurView.swift */; };
@@ -217,6 +219,8 @@
 		0BA835E02BBCF30300C2BFC0 /* TestMetalVideoPlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMetalVideoPlayViewController.swift; sourceTree = "<group>"; };
 		0BA835E22BBD383300C2BFC0 /* shaders_5.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = shaders_5.metal; sourceTree = "<group>"; };
 		0BA835E52BBD38B100C2BFC0 /* test.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test.mov; sourceTree = "<group>"; };
+		0BA835E72BC2508C00C2BFC0 /* TestMetalSobelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMetalSobelViewController.swift; sourceTree = "<group>"; };
+		0BA835E92BC27C8800C2BFC0 /* shaders_6.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = shaders_6.metal; sourceTree = "<group>"; };
 		0BC1E6902AE2936300488624 /* PokemonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonList.swift; sourceTree = "<group>"; };
 		0BC1E6922AE61C1B00488624 /* PokemonInfoPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonInfoPanel.swift; sourceTree = "<group>"; };
 		0BC1E6952AE67A8400488624 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
@@ -533,6 +537,7 @@
 				0B379D5E2BBA5025000F3947 /* TestMetalVideoViewController.swift */,
 				0BA835DC2BBBA12100C2BFC0 /* TestMetalGrayViewController.swift */,
 				0BA835E02BBCF30300C2BFC0 /* TestMetalVideoPlayViewController.swift */,
+				0BA835E72BC2508C00C2BFC0 /* TestMetalSobelViewController.swift */,
 			);
 			path = metal;
 			sourceTree = "<group>";
@@ -540,6 +545,7 @@
 		0B4B5C742BB509CB00611ADF /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				0BA835E92BC27C8800C2BFC0 /* shaders_6.metal */,
 				0BA835E22BBD383300C2BFC0 /* shaders_5.metal */,
 				0BA835DE2BBBAF1E00C2BFC0 /* shaders_4.metal */,
 				0B4B5C752BB509DD00611ADF /* shaders_2.metal */,
@@ -746,6 +752,7 @@
 				0B2CF2D32ADFDFB300048ABE /* FileStorage.swift in Sources */,
 				0B4B5C762BB509DD00611ADF /* shaders_2.metal in Sources */,
 				0B2CF3612ADFE11000048ABE /* Pokemon.swift in Sources */,
+				0BA835E82BC2508C00C2BFC0 /* TestMetalSobelViewController.swift in Sources */,
 				0BD8C3E42AF2034F00363F1A /* UserModel.swift in Sources */,
 				0BC1E6932AE61C1B00488624 /* PokemonInfoPanel.swift in Sources */,
 				0B2CF26A2ADFCC8500048ABE /* ContentView.swift in Sources */,
@@ -771,6 +778,7 @@
 				0BA835DD2BBBA12100C2BFC0 /* TestMetalGrayViewController.swift in Sources */,
 				0BC1E69F2AE8BBF900488624 /* PokemonRootView.swift in Sources */,
 				0BD8C3EF2AF25C4600363F1A /* SubscriptionToken.swift in Sources */,
+				0BA835EA2BC27C8800C2BFC0 /* shaders_6.metal in Sources */,
 				0BC1E6912AE2936400488624 /* PokemonList.swift in Sources */,
 				0BD8C3E22AF1FE9F00363F1A /* SettingsViewModel.swift in Sources */,
 			);
