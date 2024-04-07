@@ -34,6 +34,7 @@ class TestMetalSobelViewController: UIViewController {
         super.viewDidLoad()
         // Initialize MTKView
         mtkView = MTKView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+//        mtkView = MTKView(frame: view.bounds)
         mtkView.device = MTLCreateSystemDefaultDevice()
         view.addSubview(mtkView)
         mtkView.delegate = self

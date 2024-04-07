@@ -93,6 +93,14 @@ sobelKernel(texture2d<half, access::read>  sourceTexture  [[texture(LYFragmentTe
     // sqrt(h^2 + v^2)，相当于求点到(h, v)的距离，所以可以用length
     half color = length(half2(grayH, grayV));
     
-    destTexture.write(half4(color, color, color, 1.0), grid); // 写回对应纹理
+    // 计算梯度的长度作为边缘强度
+    // 读取原始颜色
+    half4 originalColor = sourceTexture.read(uint2(grid.x, grid.y));
+
+    // 将边缘强度作为alpha值，保留原始颜色的RGB值
+    half4 edgeColor = half4(originalColor.rgb, color);
+    
+//    destTexture.write(half4(color, color, color, 1.0), grid); // 写回对应纹理
+    destTexture.write(edgeColor, grid); // 写回对应纹理
 }
 
