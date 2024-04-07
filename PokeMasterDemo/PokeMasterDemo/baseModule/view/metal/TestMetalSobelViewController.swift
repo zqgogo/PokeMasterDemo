@@ -78,8 +78,7 @@ class TestMetalSobelViewController: UIViewController {
             print("Failed to create render pipeline state: $error)")
         }
         do {
-            computePipelineState = try
-            mtkView.device?.makeComputePipelineState(function: kernelFunction!)
+            computePipelineState = try mtkView.device?.makeComputePipelineState(function: kernelFunction!)
         } catch let error {
             print("Failed to create compute pipeline state: $error)")
         }
