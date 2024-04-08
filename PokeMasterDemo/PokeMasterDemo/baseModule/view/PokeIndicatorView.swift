@@ -88,7 +88,8 @@ struct TestVcView: UIViewControllerRepresentable {
 //        return TestMetalVideoViewController()
 //        return TestMetalGrayViewController()
 //        return TestMetalVideoPlayViewController()
-        return TestMetalSobelViewController()
+//        return TestMetalSobelViewController()
+        return TestMetalTexture2DViewController()
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
@@ -99,6 +100,13 @@ struct TestVcView: UIViewControllerRepresentable {
 //        vc.isOn_y = isOn_y
 //        vc.isOn_z = isOn_z
 //        vc.slideValue = slideValue
+        
+        guard let vc = uiViewController as? TestMetalTexture2DViewController else {
+            return
+        }
+        vc.rotationEyePosition = isOn_y
+        vc.rotationEyeLookat = isOn_z
+        vc.slider = slideValue
     }
     
 //    func makeCoordinator() -> Coordinator {

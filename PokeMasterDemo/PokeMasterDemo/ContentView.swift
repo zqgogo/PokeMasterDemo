@@ -49,7 +49,7 @@ struct ContentView: View {
             
             TestVcView(slideValue: slideRate, isOn_x: toggleX, isOn_y: toggleY, isOn_z: toggleZ)
                 .background(.gray)
-                .frame(width: 200, height: 200)
+                .frame(width: 300, height: 400)
         }
         .padding()
         //        ChatView()
