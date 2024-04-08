@@ -88,28 +88,28 @@ sobelKernel(texture2d<half, access::read>  sourceTexture  [[texture(LYFragmentTe
     half4 h = -topLeft - 2.0 * top - topRight + bottomLeft + 2.0 * bottom + bottomRight; // 横方向差别
     half4 v = -bottom - 2.0 * centerLeft - topLeft + bottomRight + 2.0 * centerRight + topRight; // 竖方向差别
     
-    //    half  grayH  = dot(h.rgb, kRec709Luma); // 转换成亮度
-    //    half  grayV  = dot(v.rgb, kRec709Luma); // 转换成亮度
+    half  grayH  = dot(h.rgb, kRec709Luma); // 转换成亮度
+    half  grayV  = dot(v.rgb, kRec709Luma); // 转换成亮度
+   
+    //sqrt(h^2 + v^2)，相当于求点到(h, v)的距离，所以可以用length
+    half color = length(half2(grayH, grayV));
     
-    // sqrt(h^2 + v^2)，相当于求点到(h, v)的距离，所以可以用length
-    //    half color = length(half2(grayH, grayV));
-    
-    //    destTexture.write(half4(color, color, color, 1.0), grid); // 写回对应纹理
+    destTexture.write(half4(color, color, color, 1.0), grid); // 写回对应纹理
     
     
-    // 计算边缘强度
-    half edgeIntensityH = length(h);
-    half edgeIntensityV = length(v);
-    half edgeIntensity = max(edgeIntensityH, edgeIntensityV);
+//    // 计算梯度的长度作为边缘强度
+//    half edgeIntensity = length(half2(grayH, grayV));
+//
+//    // 根据边缘强度调整原始颜色的alpha值，或者直接叠加到原始颜色上
+//    // 这里我们使用边缘强度作为alpha值，创建一个新的颜色值
+//    half4 originalColor = sourceTexture.read(uint2(grid.x, grid.y)); // 读取原始颜色
+//    half4 edgeColor = half4(originalColor.rgb, edgeIntensity); // 将边缘强度作为alpha值
+//
+//    // 将处理后的颜色写回目标纹理
+//    destTexture.write(edgeColor, grid);
     
-    // 读取原始颜色
-    half4 originalColor = sourceTexture.read(uint2(grid.x, grid.y));
-    
-    // 根据边缘强度调整原始颜色的透明度
-    // 这里我们使用边缘强度来直接调整透明度，而不是二值化
-    half edgeMask = edgeIntensity; // 边缘强度越大，透明度越高
-    
-    // 将处理后的颜色写回目标纹理
-    destTexture.write(half4(originalColor.rgb, originalColor.a * edgeMask), grid);
+    // 测试原样输出
+//    half4 color  = sourceTexture.read(grid); // 初始颜色
+//    destTexture.write(color, grid); // 写回对应纹理
 }
 

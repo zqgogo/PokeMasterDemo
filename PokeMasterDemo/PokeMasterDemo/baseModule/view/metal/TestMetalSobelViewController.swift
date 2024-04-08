@@ -141,7 +141,7 @@ class TestMetalSobelViewController: UIViewController {
         mCaptureSession!.sessionPreset = .high
         
         mProcessQueue = DispatchQueue(label: "com.example.sessionQueue", attributes: .concurrent)
-        
+
         if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back), let input = try? AVCaptureDeviceInput(device: device) {
             if mCaptureSession?.canAddInput(input) == true {
                 mCaptureSession?.addInput(input)
@@ -150,6 +150,10 @@ class TestMetalSobelViewController: UIViewController {
         
         mCaptureDeviceOutput = AVCaptureVideoDataOutput()
         mCaptureDeviceOutput!.alwaysDiscardsLateVideoFrames = true
+               
+        //让输出可以是彩色
+//        let videoSettings: [String: Any] = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA]
+//        mCaptureDeviceOutput!.videoSettings = videoSettings as [String: Any]?
         
         if mCaptureSession?.canAddOutput(mCaptureDeviceOutput!) == true {
             mCaptureSession?.addOutput(mCaptureDeviceOutput!)
