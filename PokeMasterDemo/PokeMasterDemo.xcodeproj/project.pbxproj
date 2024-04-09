@@ -97,6 +97,7 @@
 		0B5C868D2BC3EB9100DC977F /* TestMetalTexture2DViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5C868C2BC3EB9100DC977F /* TestMetalTexture2DViewController.swift */; };
 		0B5C868F2BC3EBA900DC977F /* TestMetalTextureCubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5C868E2BC3EBA900DC977F /* TestMetalTextureCubeViewController.swift */; };
 		0B5C86912BC3EF3F00DC977F /* shaders_7.metal in Sources */ = {isa = PBXBuildFile; fileRef = 0B5C86902BC3EF3F00DC977F /* shaders_7.metal */; };
+		0B5C86932BC4E6E200DC977F /* shaders_7_cube.metal in Sources */ = {isa = PBXBuildFile; fileRef = 0B5C86922BC4E6E200DC977F /* shaders_7_cube.metal */; };
 		0B7ABC4E2BAADD6C0080E32D /* OverlaySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7ABC4D2BAADD6C0080E32D /* OverlaySheet.swift */; };
 		0B7ABC502BAAEEAB0080E32D /* PKSafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7ABC4F2BAAEEAB0080E32D /* PKSafariView.swift */; };
 		0B7ABC682BB2C7D80080E32D /* TestMetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7ABC672BB2C7D80080E32D /* TestMetalView.swift */; };
@@ -215,6 +216,7 @@
 		0B5C868C2BC3EB9100DC977F /* TestMetalTexture2DViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMetalTexture2DViewController.swift; sourceTree = "<group>"; };
 		0B5C868E2BC3EBA900DC977F /* TestMetalTextureCubeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMetalTextureCubeViewController.swift; sourceTree = "<group>"; };
 		0B5C86902BC3EF3F00DC977F /* shaders_7.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = shaders_7.metal; sourceTree = "<group>"; };
+		0B5C86922BC4E6E200DC977F /* shaders_7_cube.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = shaders_7_cube.metal; sourceTree = "<group>"; };
 		0B7ABC4D2BAADD6C0080E32D /* OverlaySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlaySheet.swift; sourceTree = "<group>"; };
 		0B7ABC4F2BAAEEAB0080E32D /* PKSafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKSafariView.swift; sourceTree = "<group>"; };
 		0B7ABC672BB2C7D80080E32D /* TestMetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMetalView.swift; sourceTree = "<group>"; };
@@ -553,6 +555,7 @@
 		0B4B5C742BB509CB00611ADF /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				0B5C86922BC4E6E200DC977F /* shaders_7_cube.metal */,
 				0B5C86902BC3EF3F00DC977F /* shaders_7.metal */,
 				0BA835E92BC27C8800C2BFC0 /* shaders_6.metal */,
 				0BA835E22BBD383300C2BFC0 /* shaders_5.metal */,
@@ -775,6 +778,7 @@
 				0BA835E32BBD383300C2BFC0 /* shaders_5.metal in Sources */,
 				0B2CF2D52ADFDFB300048ABE /* FileHelper.swift in Sources */,
 				0B2CF3642ADFE29B00048ABE /* PokemonInfoRow.swift in Sources */,
+				0B5C86932BC4E6E200DC977F /* shaders_7_cube.metal in Sources */,
 				0B4B5C772BB51EDA00611ADF /* shaders_1.metal in Sources */,
 				0B2CF3592ADFE0EB00048ABE /* PokemonViewModel.swift in Sources */,
 				0BC1E6962AE67A8400488624 /* BlurView.swift in Sources */,

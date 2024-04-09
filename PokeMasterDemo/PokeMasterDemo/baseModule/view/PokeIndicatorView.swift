@@ -89,7 +89,7 @@ struct TestVcView: UIViewControllerRepresentable {
 //        return TestMetalGrayViewController()
 //        return TestMetalVideoPlayViewController()
 //        return TestMetalSobelViewController()
-        return TestMetalTexture2DViewController()
+        return TestMetalTextureCubeViewController()
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
@@ -101,7 +101,7 @@ struct TestVcView: UIViewControllerRepresentable {
 //        vc.isOn_z = isOn_z
 //        vc.slideValue = slideValue
         
-        guard let vc = uiViewController as? TestMetalTexture2DViewController else {
+        guard let vc = uiViewController as? TestMetalTextureCubeViewController else {
             return
         }
         vc.rotationEyePosition = isOn_y
